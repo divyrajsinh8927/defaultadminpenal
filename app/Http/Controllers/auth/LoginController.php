@@ -29,13 +29,14 @@ class LoginController extends Controller
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
-        $userId = User::select('id','name','user_image')->where('email',$credentials['email'])->first();
-        $settings = Setting::get()->toArray();
+        $userId = User::select('id','name','user_image','mobile_no')->where('email',$credentials['email'])->first();
+        $settings = Setting::where('setting_name','=','app_logo')->first()->toArray();
 
         $request->session()->put('user_id',$user->id);
         $request->session()->put('user_name',$user->name);
         $request->session()->put('user_image',$userId->user_image);
-        $request->session()->put('app_icon',$settings[2]['setting_value']);
+        $request->session()->put('app_icon',$settings['setting_value']);
+        $request->session()->put('mobile_number',$user->mobile_no);
 
         Auth::login($user);
 

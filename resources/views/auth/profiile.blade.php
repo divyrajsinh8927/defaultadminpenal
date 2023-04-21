@@ -14,7 +14,7 @@
                                 data-label="drag your image here" data-ratio="1:1"
                                 data-service="{{ route('profile.picture.update', ['_token' => csrf_token()]) }}"
                                 data-size="200,200">
-                                <img src="{{ url('/profile_images') . '/' . Session::get('user_image') }}" alt="profile picture">
+                                <img src="{{ url('/media/profile_images') . '/' . Session::get('user_image') }}" alt="profile picture">
 
                                 <input type="file" name="slim[]" required />
                                 <br><br>
@@ -27,42 +27,6 @@
                         profile</button> --}}
                 </div>
             </div>
-        </div>
-
-        <div class="card" style="margin: 30px">
-            <form action="{{ route('email.update') }}" method="POST">
-                @csrf
-                <div class="card-header">
-                    <h5>Email Section</h5>
-                </div>
-                <div class="card-block">
-                    <!-- Basic group add-ons start -->
-                    <div class="m-b-20">
-                        @if (session()->has('email_message_type'))
-                            <div class="alert alert-success background-{{ session()->get('email_message_type') }}">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <i class="icofont icofont-close-line-circled text-white"></i>
-                                </button>
-                                <strong>{{ session()->get('email_message_data') }}</strong>
-                            </div>
-                        @endif
-                        <div class="row">
-                            <label class="col-sm-4 col-lg-2 col-form-label">Your Email</label>
-                            <div class="col-sm-8 col-lg-10">
-                                <div class="input-group">
-                                    <span class="input-group-prepend">
-                                        <label class="input-group-text">@</label>
-                                    </span>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        value="{{ $userdata['email'] }}">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn waves-effect waves-light btn-primary btn-square">Update
-                            Email</button>
-                    </div>
-                </div>
-            </form>
         </div>
 
         <div class="card" style="margin: 30px">
@@ -122,6 +86,8 @@
                 </div>
             </form>
         </div>
+
+
         <script>
             window.addEventListener('DOMContentLoaded', function(event) {
                 $.ajaxSetup({

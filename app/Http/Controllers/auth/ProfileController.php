@@ -55,6 +55,19 @@ class ProfileController extends Controller
         return redirect()->back()->with(['password_message_type' => 'success'])->with(['password_message_data' => 'Password Updated Successfully!']);
     }
 
+    public function update_mobile_number(Request $request)
+    {
+        if($request->new_mobile_number == ''){
+            return redirect()->back()->with(['number_message_type' => 'danger'])->with(['number_message_data' => 'Please Input number']);
+        }
+        User::findOrFail(Session::get('user_id'))->update([
+            'mobile_no' => $request->new_mobile_number,
+            'update_at' => Carbon::now()
+        ]);
+        Session::put('mobile_number',$request->new_mobile_number);
+        return redirect()->back()->with(['number_message_type' => 'success'])->with(['number_message_data' => 'Number Updated Successfully!']);
+    }
+
     public function update_profile_picture(Request $request)
     {
         try {
@@ -137,7 +150,7 @@ class ProfileController extends Controller
             $data = $image['output']['data'];
 
             // If you want to store the file in another directory pass the directory name as the third parameter.
-            $output = Slim::saveFile($data, $name, 'profile_images/');
+            $output = Slim::saveFile($data, $name, 'media/profile_images/');
 
             // If you want to prevent Slim from adding a unique id to the file name add false as the fourth parameter.
             // $output = Slim::saveFile($data, $name, 'tmp/', false);
@@ -156,7 +169,7 @@ class ProfileController extends Controller
             $data = $image['input']['data'];
 
             // If you want to store the file in another directory pass the directory name as the third parameter.
-            $input = Slim::saveFile($data, $name, 'profile_image/');
+            $input = Slim::saveFile($data, $name, 'media/profile_image/');
 
             // If you want to prevent Slim from adding a unique id to the file name add false as the fourth parameter.
             // $input = Slim::saveFile($data, $name, 'tmp/', false);

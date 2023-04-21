@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\deshboardController;
-use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SystemSettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\auth\ProfileController;
@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/email/update', [ProfileController::class, 'updateEmail'])->name('email.update');
     Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
     Route::post('/profile/picture/update', [ProfileController::class, 'update_profile_picture'])->name('profile.picture.update');
+    Route::post('/profile/number/update', [ProfileController::class, 'update_mobile_number'])->name('mobile.number.update');
 
     //User Management Route
     Route::get('/User/manageement', [UserManagementController::class, 'index'])->name('user.management');
@@ -52,9 +53,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/delete/user', [UserManagementController::class, 'delete_user'])->name('delete.user');
 
     //Setting Routes
-    Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
-    Route::post('/set/theme', [SettingController::class, 'set_theme'])->name('theme.settings');
-    Route::post('/set/app/name', [SettingController::class, 'set_app_name'])->name('app.name.settings');
-    Route::post('/set/app/logo', [SettingController::class, 'set_app_logo'])->name('app.logo.settings');
+    Route::get('/settings', [SystemSettingController::class, 'index'])->name('admin.settings');
+    Route::post('/set/system/setting', [SystemSettingController::class, 'system_setting'])->name('set.system.settings');
+    Route::post('/set/app/name', [SystemSettingController::class, 'set_app_name'])->name('app.name.settings');
+    Route::post('/set/project/logo', [SystemSettingController::class, 'set_project_logo'])->name('project.logo.settings');
+    Route::post('/set/app/logo', [SystemSettingController::class, 'set_app_logo'])->name('app.logo.settings');
 
 });

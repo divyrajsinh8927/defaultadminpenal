@@ -107,7 +107,7 @@
 
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="{{ url('/profile_images') . '/' . Session::get('user_image') }}"
+                                        <img src="{{ url('/media/profile_images') . '/' . Session::get('user_image') }}"
                                             class="img-radius" alt="User-Profile-Image">
                                         <span>{{ Session::get('user_name') }}</span>
                                         <i class="feather icon-chevron-down"></i>
