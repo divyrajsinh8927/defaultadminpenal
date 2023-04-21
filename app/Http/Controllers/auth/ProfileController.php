@@ -198,7 +198,9 @@ class ProfileController extends Controller
         User::where('id','=',Session::get('user_id'))->update([
             'user_image' => $response['file']
         ]);
+        Session::put('user_image',$response['file']);
         Slim::outputJSON($response);
+        // return redirect()->back()->with(['profile_message_type' => 'success'])->with(['profile_message_data' => 'Profile Image Uploaded']);
 
     }
 }

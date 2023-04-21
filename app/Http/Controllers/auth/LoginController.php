@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,10 +30,12 @@ class LoginController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         $userId = User::select('id','name','user_image')->where('email',$credentials['email'])->first();
+        $settings = Setting::get()->toArray();
 
         $request->session()->put('user_id',$user->id);
         $request->session()->put('user_name',$user->name);
         $request->session()->put('user_image',$userId->user_image);
+        $request->session()->put('app_icon',$settings[2]['setting_value']);
 
         Auth::login($user);
 

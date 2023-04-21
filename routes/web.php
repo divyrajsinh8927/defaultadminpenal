@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/email/update', [ProfileController::class, 'updateEmail'])->name('email.update');
     Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
-    Route::get('/profile/picture/update', [ProfileController::class, 'update_profile_picture'])->name('profile.picture.update');
+    Route::post('/profile/picture/update', [ProfileController::class, 'update_profile_picture'])->name('profile.picture.update');
 
     //User Management Route
     Route::get('/User/manageement', [UserManagementController::class, 'index'])->name('user.management');
@@ -55,5 +55,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', [SettingController::class, 'index'])->name('admin.settings');
     Route::post('/set/theme', [SettingController::class, 'set_theme'])->name('theme.settings');
     Route::post('/set/app/name', [SettingController::class, 'set_app_name'])->name('app.name.settings');
+    Route::post('/set/app/logo', [SettingController::class, 'set_app_logo'])->name('app.logo.settings');
 
 });

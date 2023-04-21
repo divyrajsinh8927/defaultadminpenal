@@ -8,20 +8,13 @@
             <div class="card-block">
                 <!-- Basic group add-ons start -->
                 <div class="m-b-20">
-                    @if (session()->has('password_message_type'))
-                        <div class="alert alert-success background-{{ session()->get('password_message_type') }}">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="icofont icofont-close-line-circled text-white"></i>
-                            </button>
-                            <strong>{{ session()->get('password_message_data') }}</strong>
-                        </div>
-                    @endif
                     <div class="row">
                         <div class="col-sm-8 col-lg-10">
                             <div class="slim" style="border-radius: 50%; height: 400px;width: 400px"
                                 data-label="drag your image here" data-ratio="1:1"
                                 data-service="{{ route('profile.picture.update', ['_token' => csrf_token()]) }}"
                                 data-size="200,200">
+                                <img src="{{ url('/profile_images') . '/' . Session::get('user_image') }}" alt="profile picture">
 
                                 <input type="file" name="slim[]" required />
                                 <br><br>
@@ -136,6 +129,8 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
+
+                if()
             });
         </script>
     @endsection

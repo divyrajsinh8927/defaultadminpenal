@@ -1,6 +1,33 @@
 @extends('Admin.layouts.admin_master')
 @section('admin_main_content')
     <div class="pcoded-content">
+        <div class="card" style="margin: 30px">
+            <div class="card-header">
+                <h5>App Icon</h5>
+            </div>
+            <div class="card-block">
+                <!-- Basic group add-ons start -->
+                <div class="m-b-20">
+                    <div class="row">
+                        <div class="col-sm-8 col-lg-10">
+                            <div class="slim" style=" height: 400px;width: 400px"
+                                data-label="drag your image here" data-ratio="1:1"
+                                data-service="{{ route('app.logo.settings', ['_token' => csrf_token()]) }}"
+                                data-size="200,200">
+                                <img src="{{ url('/app_icon') . '/' . Session::get('app_icon') }}" alt="profile picture">
+
+                                <input type="file" name="slim[]" required />
+                                <br><br>
+                            </div>
+
+                        </div>
+                    </div>
+                    {{-- <button type="submit" style="margin-left: 0%;margin-top: 1%"
+                        class="btn waves-effect waves-light btn-primary btn-square">update
+                        profile</button> --}}
+                </div>
+            </div>
+        </div>
         <div class="main-body">
             <div class="page-wrapper">
                 <!-- Page body start -->
