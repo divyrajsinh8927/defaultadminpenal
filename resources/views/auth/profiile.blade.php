@@ -9,8 +9,8 @@
                 <!-- Basic group add-ons start -->
                 <div class="m-b-20">
                     <div class="row">
-                        <div class="col-sm-8 col-lg-10">
-                            <div class="slim" style="border-radius: 50%; height: 400px;width: 400px"
+                        <div class="col-sm-8 col-lg-10" style="margin-left: 3%">
+                            <div class="slim" style="border-radius: 50%; height: 350px;width: 350px"
                                 data-label="drag your image here" data-ratio="1:1"
                                 data-service="{{ route('profile.picture.update', ['_token' => csrf_token()]) }}"
                                 data-size="200,200">
