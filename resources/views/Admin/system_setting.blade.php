@@ -10,7 +10,7 @@
             <div class="card-block">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" style="font-size: 20px;margin-top: 3px;">Project Title</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <input type="text" style="height: 50px;font-weight: bold;font-size: 20px" name="txt_project_name"
                             id="txt_project_name" class="form-control form-control-round form-control-center"
                             placeholder="Project Title" value="{{ Session::get('project_name') }}">
@@ -23,22 +23,21 @@
                 <!-- Basic group add-ons start -->
                 <div class="m-b-20">
                     <div class="form-group row">
-                        <label class="col-lg-2 col-sm-2 col-form-label" style="font-size: 20px;margin-top: 10%;">Project
-                            Logo</label>
-                        <div class="col-lg-2 col-sm-4">
+                        <label class="col-lg-2 col-sm-2 col-form-label" style="font-size: 25px;margin-top: 7%;">Project
+                            Logo:- </label>
+                        <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="slim" data-label="drag your image here" data-ratio="1:1"
                                 data-service="{{ route('project.logo.settings', ['_token' => csrf_token()]) }}"
                                 data-size="200,200">
-                                <img src="{{ url('/media/profile_logos') . '/' . Session::get('project_logo') }}"
+                                <img src="{{ url('/media/project_logos') . '/' . Session::get('project_logo') }}"
                                     alt="profile picture">
 
                                 <input type="file" name="slim[]" required />
-                                <br><br>
                             </div>
                         </div>
-                        <label class="col-lg-1 offset-lg-2 col-sm-2 col-form-label"
-                            style="font-size: 20px;margin-top: 10%;">fly Icon</label>
-                        <div class="col-lg-2 col-sm-4">
+                        <label class="col-lg-2 offset-lg-2 col-sm-2 col-form-label"
+                            style="font-size: 25px;margin-top: 7%;">app Icon:- </label>
+                        <div class="col-lg-2 col-md-3 col-sm-4">
                             <div class="slim" data-label="drag your image here" data-ratio="1:1"
                                 data-service="{{ route('app.logo.settings', ['_token' => csrf_token()]) }}"
                                 data-size="200,200">
@@ -46,9 +45,8 @@
                                     alt="profile picture">
 
                                 <input type="file" name="slim[]" required />
-                                <br><br>
                             </div>
-                        </div>
+                        </div><br><br>
                     </div>
                 </div>
             </div>
@@ -75,13 +73,11 @@
 
             <div class="card-block">
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" style="font-size: 20px;margin-top: 3px;">Project
-                        Title</label>
-                    <div class="col-sm-5">
-                        <select type="text"
-                            style="height: 50px;font-weight: bold;font-size: 20px;border: 0.1px solid gray;"
+                    <label class="col-sm-2 col-form-label" style="font-size: 20px;margin-top: 3px;">Project Theme</label>
+                    <div class="col-sm-4">
+                        <select style="height: 50px;font-weight: bold;font-size: 20px;border: 0.1px solid gray;"
                             name="txt_theme" id="txt_theme" class="form-control form-control-round form-control-center"
-                            placeholder="Project Title"  value="{{ Session::get('theme') }}">
+                            value="{{ session()->get('theme') }}">
                             <option value="White">White</option>
                             <option value="Black">Black</option>
                             <option value="Blue">Blue</option>

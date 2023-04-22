@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/get/user/roles', [UserManagementController::class, 'role_for_option'])->name('get.user.role');
     Route::post('/add/user', [UserManagementController::class, 'add_user'])->name('add.user');
     Route::post('/delete/user', [UserManagementController::class, 'delete_user'])->name('delete.user');
+    Route::post('/edit/user', [UserManagementController::class, 'edit_user'])->name('edit.user');
+    Route::post('/update/user', [UserManagementController::class, 'update_user'])->name('update.user');
 
     //Setting Routes
     Route::get('/settings', [SystemSettingController::class, 'index'])->name('admin.settings');

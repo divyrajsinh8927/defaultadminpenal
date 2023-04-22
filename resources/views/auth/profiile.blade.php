@@ -33,7 +33,7 @@
             <form action="{{ route('password.update') }}" method="POST">
                 @csrf
                 <div class="card-header">
-                    <h5>Password Section</h5>
+                    <h5>Admin Password</h5>
                 </div>
                 <div class="card-block">
                     <!-- Basic group add-ons start -->

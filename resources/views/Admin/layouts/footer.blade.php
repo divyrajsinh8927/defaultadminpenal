@@ -106,7 +106,6 @@
 <script type="text/javascript" src="{{ asset('admin/assets/pages/dashboard/custom-dashboard.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('admin/assets/js/script.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('admin/assets/js/script.js') }}"></script>
-<script src="https://unpkg.com/react-image-crop/dist/ReactCrop.min.js"></script>
 </body>
 
 </html>

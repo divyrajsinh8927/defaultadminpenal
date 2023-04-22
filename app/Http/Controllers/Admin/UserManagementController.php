@@ -91,9 +91,6 @@ class UserManagementController extends Controller
                 'txt_name' => 'required',
                 'txt_email' => 'required',
                 'txt_mobile_number' => 'required',
-                'txt_password' => 'required',
-                'txt_confirm_password' => 'required|same:txt_password',
-                'select_role' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -104,15 +101,47 @@ class UserManagementController extends Controller
             User::create([
                 "name" => $request->txt_name,
                 "email" => $request->txt_email,
-                "password" => Hash::make($request->txt_password),
                 "mobile_no" => $request->txt_mobile_number,
-                "role_id" => $request->select_role
+                "status" => $request->select_status
             ]);
 
             return redirect()->back()->with(['add_form_error_type' => 'success'])->with(['add_form_error' => 'User Added Successfuly']);
-
         } catch (Exception $e) {
             return redirect()->back()->with(['add_form_error_type' => 'danger'])->with(['add_form_error' => $e]);
+        }
+    }
+
+    public function edit_user(Request $request)
+    {
+        $edit_user = User::findOrFail($request->id);
+        return response()->json($edit_user);
+    }
+
+    public function update_user(Request $request)
+    {
+        try {
+            $updatevalidator = Validator::make($request->all(), [
+                'txt_update_name' => 'required',
+                'txt_update_email' => 'required',
+                'txt_update_mobile_number' => 'required',
+                'select_update_status' => 'required',
+                'txt_update_id' => 'required',
+            ]);
+
+            if ($updatevalidator->fails()) {
+                return response()->json([
+                    'error' => $updatevalidator->errors()->all()
+                ]);
+            }
+
+            User::findOrFail($request->txt_update_id)->update([
+                'name' => $request->txt_update_name,
+                'email' => $request->txt_update_email,
+                'mobile_no' => $request->txt_update_mobile_number,
+                'status' => $request->select_update_status,
+                'updated_at' => Carbon::now()
+            ]);
+        } catch (Exception $e) {
         }
     }
 

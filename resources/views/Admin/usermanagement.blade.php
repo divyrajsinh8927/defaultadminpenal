@@ -28,7 +28,7 @@
                         <div class="card-header">
                             <h5>Users Table</h5>
                             <button type="button" style="float: right;margin-right: 2%;font-size: 20px;"
-                                class="btn btn-primary waves-effect" data-toggle="modal" data-target="#large-Modal"><i
+                                class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"><i
                                     class="fa fa-user-plus" style="margin-right: 0px"></i> Add</button>
                         </div>
                         <div class="card-block">
@@ -59,10 +59,6 @@
                                                             style="width: 38.1042px;">Mobile Number</th>
                                                         <th class="sorting" tabindex="0" aria-controls="multi-colum-dt"
                                                             rowspan="1" colspan="1"
-                                                            aria-label="Start date: activate to sort column ascending"
-                                                            style="width: 90.2812px;">User Role</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="multi-colum-dt"
-                                                            rowspan="1" colspan="1"
                                                             aria-label="Salary: activate to sort column ascending"
                                                             style="width: 60.1458px;">Action</th>
                                                     </tr>
@@ -81,20 +77,17 @@
 
 
                 <!--Add User Form-->
-                <div class="modal fade" id="large-Modal" tabindex="-1" role="dialog">
+                <div class="modal fade" id="add-Modal" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modal title</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="{{ route('add.user') }}" method="POST">
-                            @csrf
-                            <div class="card">
-                                <div class="card-header" style="align-self: center">
-                                    <h4>Add User</h4>
-                                </div>
+                        <div class="card">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add User</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('add.user') }}" method="POST">
+                                @csrf
                                 <div class="card-block">
                                     <!-- Basic group add-ons start -->
                                     <div class="m-b-20">
@@ -138,42 +131,19 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <label class="col-sm-4 col-lg-2 col-form-label">Password</label>
-                                            <div class="col-sm-8 col-lg-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-prepend">
-                                                        <label class="input-group-text"><i class="fa fa-key"></i>
-                                                        </label>
-                                                    </span>
-                                                    <input type="password" name="txt_password" id="txt_password"
-                                                        class="form-control" placeholder="Password">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-sm-4 col-lg-2 col-form-label">Confirm Password</label>
-                                            <div class="col-sm-8 col-lg-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-prepend">
-                                                        <label class="input-group-text"><i class="fa fa-key"></i>
-                                                        </label>
-                                                    </span>
-                                                    <input type="password" name="txt_confirm_password"
-                                                        id="txt_confirm_password" class="form-control"
-                                                        placeholder="Confirm Password">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-sm-4 col-lg-2 col-form-label">User Role</label>
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Status</label>
                                             <div class="col-sm-8 col-lg-10">
                                                 <div class="input-group">
                                                     <span class="input-group-prepend">
                                                         <label class="input-group-text"><i class="fa fa-user"></i>
                                                         </label>
                                                     </span>
-                                                    <select name="select_role" id="select_role"
-                                                        class="form-control"></select>
+                                                    <select name="select_status" id="select_status" class="form-control"
+                                                        style="border: 0.1px solid #ccc;">
+                                                        <option value="1">Active</option>
+                                                        <option value="2">Blocked</option>
+                                                        <option value="3">Archived</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,9 +156,97 @@
                                     </div>
                                     <!-- Icon Group Addons end -->
                                 </div>
-                            </div>
 
-                        </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Update Form-->
+                <div class="modal fade" id="update-Modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="card">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update User</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form id="frm_update_user">
+                                @csrf
+                                <div class="card-block">
+                                    <!-- Basic group add-ons start -->
+                                    <div class="m-b-20">
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">User Name</label>
+                                            <div class="col-sm-8 col-lg-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="fa fa-user"></i></label>
+                                                    </span>
+                                                    <input type="hidden" name="txt_update_id" id="txt_update_id">
+                                                    <input type="text" name="txt_update_name" id="txt_update_name"
+                                                        class="form-control" placeholder="Enter Name">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">User Email</label>
+                                            <div class="col-sm-8 col-lg-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="fa fa-envelope"
+                                                                aria-hidden="true"></i></label>
+                                                    </span>
+                                                    <input type="email" name="txt_update_email" id="txt_update_email"
+                                                        class="form-control" placeholder="Enter Email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">User Mobile Number</label>
+                                            <div class="col-sm-8 col-lg-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="fa fa-phone"
+                                                                aria-hidden="true"></i>
+                                                        </label>
+                                                    </span>
+                                                    <input type="number" name="txt_update_mobile_number"
+                                                        id="txt_update_mobile_number" class="form-control"
+                                                        placeholder="Mobile Number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Status</label>
+                                            <div class="col-sm-8 col-lg-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i class="fa fa-user"></i>
+                                                        </label>
+                                                    </span>
+                                                    <select name="select_update_status" id="select_update_status"
+                                                        class="form-control" style="border: 0.1px solid #ccc;">
+                                                        <option value="1">Active</option>
+                                                        <option value="2">Blocked</option>
+                                                        <option value="3">Archived</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default waves-effect "
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light ">Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Icon Group Addons end -->
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -251,15 +309,13 @@
                                         'data': 'mobile_no',
                                     },
                                     {
-                                        'data': 'role',
-                                    },
-                                    {
                                         'data': 'id',
                                         'orderable': false,
                                         render: function(data, type, row, meta) {
-                                            return '<span class="DeleteButton" style="margin-left: 40%" data-id="' +
+                                            return '<button class="btn waves-effect waves-light btn-primary" data-toggle="modal" data-target="#update-Modal" data-id="' +
                                                 data +
-                                                '"><i class="fa fa-trash fa-2x" style="color: red; cursor: pointer;"></i></span>';
+                                                '" id="edit_user"><i class="icofont icofont-pencil" style="font-size:20px"></i></button>&nbsp<button class="btn waves-effect waves-light btn-danger" id="DeleteButton" style="align-item: center; " data-id="' +
+                                                data + '"><i class="fa fa-trash"> </i></button>';
                                         }
                                     }
                                 ]
@@ -267,24 +323,51 @@
 
                         });
 
-                        var role_option = [
-                            '<option value="-1" disabled>Select User Role</option>'
-                        ]
-                        $.ajax({
-                            url: "{{ route('get.user.role') }}",
-                            type: "GET",
-                            dataType: 'json',
-                            success: function(data) {
-                                for (var i = 0; i < data.length; i++) {
-                                    var row = $('<option value=' + data[i].id + '>' + data[i].role +
-                                        '</option>');
-                                    role_option.push(row)
+                        $(document).on('click', '#edit_user', function() {
+                            update_user_Id = $(this).data('id');
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ route('edit.user') }}",
+                                data: {
+                                    id: update_user_Id
+                                },
+                                success: function(data) {
+                                    $('#txt_update_id').val(data.id);
+                                    $('#txt_update_name').val(data.name);
+                                    $('#txt_update_email').val(data.email);
+                                    $('#txt_update_mobile_number').val(data.mobile_no);
+                                    $('#select_update_status').val(data.status);
                                 }
-                                $("#select_role").html(role_option);
-                            }
+                            });
                         });
 
-                        $(document).on('click', '.DeleteButton', function() {
+                        $('#frm_update_user').submit(function(e) {
+                            e.preventDefault();
+
+                            var updateFormData = new FormData(this);
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ route('update.user') }}",
+                                data: updateFormData,
+                                contentType: false,
+                                processData: false,
+                                success: function(data) {
+                                    if ($.isEmptyObject(data.error)) {
+                                        Swal.fire(
+                                            'Updated!',
+                                            'User has been Updated.',
+                                            'success'
+                                        ).then(function() {
+                                            location.reload();
+                                        })
+                                    } else {
+                                        printUpdateErrorMsg(data.error);
+                                    }
+                                }
+                            });
+                        });
+
+                        $(document).on('click', '#DeleteButton', function() {
                             Swal.fire({
                                 title: 'Are you sure?',
                                 text: "You won't to Delete User!",
@@ -306,11 +389,11 @@
                                         },
                                         success: function(data) {
                                             if (data.error) {
-                                                    Swal.fire(
-                                                        'Not Deleted!',
-                                                        data.error,
-                                                        'error'
-                                                    ).then(function() {})
+                                                Swal.fire(
+                                                    'Not Deleted!',
+                                                    data.error,
+                                                    'error'
+                                                ).then(function() {})
                                             } else {
                                                 Swal.fire(
                                                     'Deleted!',
