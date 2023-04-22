@@ -36,10 +36,10 @@ class RoleController extends Controller
         $total_roles = role::where('is_Delete', 0)->get()->count();
 
         $roles = role::select('id', 'role')->where('is_Delete', '=', 0)->where(function ($query) {
-                global $search;
-                $query->where('role', 'LIKE', '%' . $search . '%')
-                    ->orWhere('id', 'LIKE', '%' . $search . '%');
-            })->skip($start)->take($length)
+            global $search;
+            $query->where('role', 'LIKE', '%' . $search . '%')
+                ->orWhere('id', 'LIKE', '%' . $search . '%');
+        })->skip($start)->take($length)
             ->orderBy($orderColumnName, $order)->get();
 
         $filterd_roles = role::select('id', 'role')->where('is_Delete', '=', 0)->where(function ($query) {

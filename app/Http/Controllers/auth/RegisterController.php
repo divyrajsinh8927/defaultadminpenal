@@ -32,9 +32,9 @@ class RegisterController extends Controller
         ]);
 
         auth()->login($user);
-        $request->session()->put('user_name',$request->name);
-        $request->session()->put('user_image','default_profile.png');
-        $request->session()->put('mobile_number',$request->new_mobile_number);
+        $request->session()->put('user_name', $request->name);
+        $request->session()->put('user_image', 'default_profile.png');
+        $request->session()->put('mobile_number', $request->new_mobile_number);
 
         return redirect('/home')->with('success', "Account successfully registered.");
     }
