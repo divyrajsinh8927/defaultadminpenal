@@ -12,13 +12,28 @@
                                 <span class="pcoded-mtext">Dashboard</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="{{ route('user.management') }}" class="waves-effect waves-dark">
+                        <li class="pcoded-hasmenu">
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
                                 <span class="pcoded-micon">
                                     <i class="fa fa-users"></i>
                                 </span>
                                 <span class="pcoded-mtext">User Management</span>
                             </a>
+                            <ul class="pcoded-submenu">
+                                <li class="">
+                                    <a href="{{ route('user.management') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-mtext">User Management</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('role') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-mtext">Role</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+
                         </li>
                         <li class="">
                             <a href="{{ route('admin.settings') }}" class="waves-effect waves-dark">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\deshboardController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SystemSettingController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Auth\LoginController;
@@ -61,4 +62,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/set/project/logo', [SystemSettingController::class, 'set_project_logo'])->name('project.logo.settings');
     Route::post('/set/app/logo', [SystemSettingController::class, 'set_app_logo'])->name('app.logo.settings');
 
+    // roles route
+    Route::get('/roles', [RoleController::class, 'index'])->name('role');
+    Route::post('/get/roles', [RoleController::class, 'get_roles'])->name('get.role');
+    Route::post('/add/roles', [RoleController::class, 'add_role'])->name('add.role');
+    Route::post('/edit/roles', [RoleController::class, 'edit_roles'])->name('edit.role');
+    Route::post('/update/roles', [RoleController::class, 'update_roles'])->name('update.role');
+    Route::post('/delete/roles', [RoleController::class, 'delete_roles'])->name('delete.role');
 });
