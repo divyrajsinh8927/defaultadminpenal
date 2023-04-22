@@ -187,9 +187,9 @@
                                             $('#tbl_user_info').html(
                                                 "<b style='font-size: 15px;'>Found </b>&nbsp&nbsp<b style='font-size: 20px;'>" +
                                                 res.displayedUsers +
-                                                "</b> &nbsp&nbsp<b style='font-size: 15px;'> From Total </b>&nbsp&nbsp<b style='font-size: 20px;'>" +
+                                                "</b> &nbsp&nbsp<b style='font-size: 15px;'>Roles From Total </b>&nbsp&nbsp<b style='font-size: 20px;'>" +
                                                 res.totalUsers +
-                                                "</b><b style='font-size: 15px;'>  &nbsp&nbspProducts </b>"
+                                                "</b><b style='font-size: 15px;'>  &nbsp&nbspRoles </b>"
                                             );
                                         }
                                     });
